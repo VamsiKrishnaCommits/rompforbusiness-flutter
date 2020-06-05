@@ -5,7 +5,7 @@ class item{
   int cost;
   int stock;
 String key;
-String available;
+String available
 String managestock;
 String catagory;
   item(DataSnapshot snapshot){
