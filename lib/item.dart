@@ -6,7 +6,7 @@ class item{
   int stock;
 String key;
 String available;
-String managestock;
+String managestock
 String catagory;
   item(DataSnapshot snapshot){
     Map<dynamic,dynamic> val=snapshot.value;
