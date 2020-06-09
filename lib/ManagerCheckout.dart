@@ -1246,58 +1246,54 @@ class _PosState extends State<Pos> {
                                           backgroundColor: Colors.transparent,
                                           context: context,
                                           builder: (context) =>
-                                              Center(
-                                                  child: Card(
-                                                    color: const Color(
-                                                        0xFF0E3311).withOpacity(
-                                                        0)
-                                                    ,
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius
-                                                            .circular(20.0)
-                                                    ),
-                                                    child:
-                                                    Column(
-                                                        crossAxisAlignment: CrossAxisAlignment
-                                                            .center,
-                                                        children: <Widget>[
-                                                          GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.of(
-                                                                    context)
-                                                                    .pop();
-                                                              },
-                                                              child:
-                                                              Visibility(
-                                                                  visible: navigator,
-                                                                  child:
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                          bottom: 20),
+                                             StatefulBuilder(
+                                             builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
 
-                                                                      child: Container(
-                                                                        child: Row(
-                                                                            mainAxisAlignment: MainAxisAlignment
-                                                                                .spaceEvenly,
-                                                                            children: <
-                                                                                Widget>[
-                                                                              Text(
-                                                                                "Items : " +
-                                                                                    (cart
-                                                                                        .length -
-                                                                                        1)
-                                                                                        .toString(),
-                                                                                style: TextStyle(
-                                                                                    fontSize: 25.0,
-                                                                                    fontWeight: FontWeight
-                                                                                        .bold,
-                                                                                    color: Colors
-                                                                                        .white
-                                                                                ),),
-                                                                              Text(
-                                                                                  "Total: " +
-                                                                                      cart["total"]
+    return  Container(
+                                        child: Center(
+                                                    child: Card(
+                                                      color: const Color(
+                                                          0xFF0E3311).withOpacity(
+                                                          0)
+                                                      ,
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius
+                                                              .circular(20.0)
+                                                      ),
+                                                      child:
+                                                      Column(
+                                                          crossAxisAlignment: CrossAxisAlignment
+                                                              .center,
+                                                          children: <Widget>[
+                                                           Expanded(
+                                                             flex : 2,
+                                                            child:GestureDetector(
+                                                                onTap: () {
+                                                                  Navigator.of(
+                                                                      context)
+                                                                      .pop();
+                                                                },
+                                                                child:
+                                                                Visibility(
+                                                                    visible: navigator,
+                                                                    child:
+                                                                    Padding(
+                                                                        padding: EdgeInsets
+                                                                            .only(
+                                                                            bottom: 20),
+
+                                                                        child:
+                                                                        Container(
+                                                                          child: Row(
+                                                                              mainAxisAlignment: MainAxisAlignment
+                                                                                  .spaceEvenly,
+                                                                              children: <
+                                                                                  Widget>[
+                                                                                Text(
+                                                                                  "Items : " +
+                                                                                      (cart
+                                                                                          .length -
+                                                                                          1)
                                                                                           .toString(),
                                                                                   style: TextStyle(
                                                                                       fontSize: 25.0,
@@ -1305,462 +1301,473 @@ class _PosState extends State<Pos> {
                                                                                           .bold,
                                                                                       color: Colors
                                                                                           .white
-                                                                                  )),
-                                                                              Icon(
-                                                                                (Icons
-                                                                                    .navigate_next),
-                                                                                color: Colors
-                                                                                    .purple,
-                                                                                size: 40,
-                                                                              )
-                                                                            ]
-                                                                        ),
-                                                                        width: 343,
-                                                                        height: 58,
-                                                                        decoration: BoxDecoration(
-                                                                          color: Colors
-                                                                              .purple[200],
-                                                                          borderRadius: BorderRadius
-                                                                              .circular(
-                                                                              10),
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                              offset: const Offset(
-                                                                                  10,
-                                                                                  3),
-                                                                              blurRadius: 6,
-                                                                              color: const Color(
-                                                                                  0xff000000)
-                                                                                  .withOpacity(
-                                                                                  0.16),)
-                                                                          ],
-                                                                        ),
+                                                                                  ),),
+                                                                                Text(
+                                                                                    "Total: " +
+                                                                                        cart["total"]
+                                                                                            .toString(),
+                                                                                    style: TextStyle(
+                                                                                        fontSize: 25.0,
+                                                                                        fontWeight: FontWeight
+                                                                                            .bold,
+                                                                                        color: Colors
+                                                                                            .white
+                                                                                    )),
+                                                                                Icon(
+                                                                                  (Icons
+                                                                                      .navigate_next),
+                                                                                  color: Colors
+                                                                                      .purple,
+                                                                                  size: 40,
+                                                                                )
+                                                                              ]
+                                                                          ),
 
-                                                                      ))))
-
-                                                          ,
-                                                          Expanded(
-                                                              flex: 6,
-                                                              child: Container(
-                                                                child: Scrollbar(
-                                                                    child: ListView
-                                                                        .builder(
-                                                                        shrinkWrap: true,
-                                                                        itemCount: weightData
-                                                                            .length,
-                                                                        itemBuilder: (
-                                                                            BuildContext context,
-                                                                            int index,) {
-                                                                          return Container(
+                                                                          decoration: BoxDecoration(
                                                                             color: Colors
-                                                                                .purple[100],
-                                                                            height: 60,
-                                                                            child: Row(
-                                                                              mainAxisAlignment: MainAxisAlignment
-                                                                                  .start,
-                                                                              children: <
-                                                                                  Widget>[
-                                                                                Expanded(
-                                                                                    child: Center(
-                                                                                        child: Text(
-                                                                                          weightData
-                                                                                              .elementAt(
-                                                                                              index)
-                                                                                              .number
-                                                                                              .toString(),
-                                                                                          style: TextStyle(
-                                                                                              color: Colors
-                                                                                                  .white,
-                                                                                              fontSize: 20,
-                                                                                              fontWeight: FontWeight
-                                                                                                  .bold
-                                                                                          ),))
-                                                                                ),
-                                                                                Expanded(
-                                                                                    child: Center(
-                                                                                        child: Text(
-                                                                                          "X",
-                                                                                          style: TextStyle(
-                                                                                              color: Colors
-                                                                                                  .purple,
-                                                                                              fontWeight: FontWeight
-                                                                                                  .bold
-                                                                                          ),))
-                                                                                ),
-                                                                                Expanded(
-                                                                                    child:
-                                                                                    Center(
-                                                                                        child: Text(
-                                                                                          weightData
-                                                                                              .elementAt(
-                                                                                              index)
-                                                                                              .itemname,
-                                                                                          style: TextStyle(
-                                                                                              fontSize: 20,
-                                                                                              color: Colors
-                                                                                                  .white
-                                                                                          ),))),
-                                                                                Expanded(
-                                                                                    child:
-                                                                                    Center(
-                                                                                        child: Text(
-                                                                                          ((item[weightData
-                                                                                              .elementAt(
-                                                                                              index)
-                                                                                              .itemname]) *
-                                                                                              weightData
-                                                                                                  .elementAt(
-                                                                                                  index)
-                                                                                                  .number)
-                                                                                              .toString(),
-                                                                                          style: TextStyle(
-                                                                                              fontSize: 20,
-                                                                                              color: Colors
-                                                                                                  .white
-                                                                                          ),)))
+                                                                                .purple[200],
+                                                                            borderRadius: BorderRadius
+                                                                                .circular(
+                                                                                10),
+                                                                            boxShadow: [
+                                                                              BoxShadow(
+                                                                                offset: const Offset(
+                                                                                    10,
+                                                                                    3),
+                                                                                blurRadius: 6,
+                                                                                color: const Color(
+                                                                                    0xff000000)
+                                                                                    .withOpacity(
+                                                                                    0.16),)
+                                                                            ],
+                                                                          ),
 
+                                                                        )))))
 
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        })),
-
-
-                                                              ))
-                                                          ,
-                                                          Expanded(
-                                                            flex: 1,
-
-                                                            child: Container(
-                                                                color: Colors
-                                                                    .purple[200],
-                                                                child:
-                                                                Center(
-                                                                    child: Text(
-                                                                      "Select a payment method",
-                                                                      style: TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .bold,
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontSize: 30
-                                                                      ),))),
-                                                          ),
-                                                          Expanded(
-                                                              flex: 2,
-                                                              child: Container(
-                                                                  child: Row(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Expanded(
-                                                                          child:
-                                                                          AnimatedContainer(
-                                                                              curve: Curves
-                                                                                  .bounceOut,
-                                                                              duration: Duration(
-                                                                                  seconds: 1),
-                                                                              decoration: BoxDecoration(
-                                                                                color: selected ==
-                                                                                    "cash"
-                                                                                    ? Colors
-                                                                                    .purple[200]
-                                                                                    : Colors
-                                                                                    .white,
-                                                                                borderRadius: BorderRadius
-                                                                                    .circular(
-                                                                                    selected ==
-                                                                                        "cash"
-                                                                                        ? 5.0
-                                                                                        : 0.0),
+                                                            ,
+                                                            Expanded(
+                                                                flex: 6,
+                                                                child: Container(
+                                                                  child: Scrollbar(
+                                                                      child: ListView
+                                                                          .builder(
+                                                                          itemCount: weightData
+                                                                              .length,
+                                                                          itemBuilder: (
+                                                                              BuildContext context,
+                                                                              int index,) {
+                                                                            return Container(
+                                                                              color: Colors
+                                                                                  .purple[100],
+                                                                              height: 60,
+                                                                              child: Row(
+                                                                                mainAxisAlignment: MainAxisAlignment
+                                                                                    .start,
+                                                                                children: <
+                                                                                    Widget>[
+                                                                                  Expanded(
+                                                                                      child: Center(
+                                                                                          child: Text(
+                                                                                            weightData
+                                                                                                .elementAt(
+                                                                                                index)
+                                                                                                .number
+                                                                                                .toString(),
+                                                                                            style: TextStyle(
+                                                                                                color: Colors
+                                                                                                    .white,
+                                                                                                fontSize: 20,
+                                                                                                fontWeight: FontWeight
+                                                                                                    .bold
+                                                                                            ),))
+                                                                                  ),
+                                                                                  Expanded(
+                                                                                      child: Center(
+                                                                                          child: Text(
+                                                                                            "X",
+                                                                                            style: TextStyle(
+                                                                                                color: Colors
+                                                                                                    .purple,
+                                                                                                fontWeight: FontWeight
+                                                                                                    .bold
+                                                                                            ),))
+                                                                                  ),
+                                                                                  Expanded(
+                                                                                      child:
+                                                                                      Center(
+                                                                                          child: Text(
+                                                                                            weightData
+                                                                                                .elementAt(
+                                                                                                index)
+                                                                                                .itemname,
+                                                                                            style: TextStyle(
+                                                                                                fontSize: 20,
+                                                                                                color: Colors
+                                                                                                    .white
+                                                                                            ),))),
+                                                                                  Expanded(
+                                                                                      child:
+                                                                                      Center(
+                                                                                          child: Text(
+                                                                                            ((item[weightData
+                                                                                                .elementAt(
+                                                                                                index)
+                                                                                                .itemname]) *
+                                                                                                weightData
+                                                                                                    .elementAt(
+                                                                                                    index)
+                                                                                                    .number)
+                                                                                                .toString(),
+                                                                                            style: TextStyle(
+                                                                                                fontSize: 20,
+                                                                                                color: Colors
+                                                                                                    .white
+                                                                                            ),)))
+                                                                                ],
                                                                               ),
-                                                                              child: GestureDetector(
-                                                                                  onTap: () {
-                                                                                    setState(() {
-                                                                                      selected =
-                                                                                      "cash";
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    child: Center(
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize
-                                                                                              .min,
-                                                                                          children: <
-                                                                                              Widget>[
-                                                                                            Icon(
-                                                                                              Icons
-                                                                                                  .attach_money,
-                                                                                              size: 70,
-                                                                                              color: selected !=
-                                                                                                  "cash"
-                                                                                                  ? Colors
-                                                                                                  .purple[200]
-                                                                                                  : Colors
-                                                                                                  .white,),
-                                                                                            SizedBox(
-                                                                                              height: 5,),
-                                                                                            Text(
-                                                                                              "Cash",
-                                                                                              style: TextStyle(
-                                                                                                  color: selected ==
-                                                                                                      "cash"
-                                                                                                      ? Colors
-                                                                                                      .white
-                                                                                                      : Colors
-                                                                                                      .purple[200]
-                                                                                              ),)
-                                                                                          ],
-                                                                                        )),
+                                                                            );
+                                                                          })),
 
-                                                                                    decoration: BoxDecoration(
-                                                                                        border: Border
-                                                                                            .all(
-                                                                                            color: Colors
-                                                                                                .purple[100])
-                                                                                    ),
-                                                                                  )))),
-                                                                      Expanded(
-                                                                          child:
-                                                                          AnimatedContainer(
-                                                                              curve: Curves
-                                                                                  .bounceOut,
-                                                                              duration: Duration(
-                                                                                  seconds: 1),
-                                                                              decoration: BoxDecoration(
-                                                                                color: selected ==
-                                                                                    "UPI"
-                                                                                    ? Colors
-                                                                                    .purple[200]
-                                                                                    : Colors
-                                                                                    .white,
-                                                                                borderRadius: BorderRadius
-                                                                                    .circular(
-                                                                                    selected ==
-                                                                                        "UPI"
-                                                                                        ? 5.0
-                                                                                        : 0.0),
-                                                                              ),
-                                                                              child: GestureDetector(
-                                                                                  onTap: () {
-                                                                                    setState(() {
-                                                                                      selected =
-                                                                                      "UPI";
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    child: Center(
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize
-                                                                                              .min,
-                                                                                          children: <
-                                                                                              Widget>[
-                                                                                            Icon(
-                                                                                              Icons
-                                                                                                  .attach_money,
-                                                                                              size: 70,
-                                                                                              color: selected !=
-                                                                                                  "UPI"
-                                                                                                  ? Colors
-                                                                                                  .purple[200]
-                                                                                                  : Colors
-                                                                                                  .white,),
-                                                                                            SizedBox(
-                                                                                              height: 5,),
-                                                                                            Text(
-                                                                                              "UPI",
-                                                                                              style: TextStyle(
-                                                                                                  color: selected ==
-                                                                                                      "UPI"
-                                                                                                      ? Colors
-                                                                                                      .white
-                                                                                                      : Colors
-                                                                                                      .purple[200]
-                                                                                              ),)
-                                                                                          ],
-                                                                                        )),
 
-                                                                                    decoration: BoxDecoration(
-                                                                                        border: Border
-                                                                                            .all(
-                                                                                            color: Colors
-                                                                                                .purple[100])
-                                                                                    ),
-                                                                                  )))),
-                                                                      Expanded(
-                                                                          child:
-                                                                          AnimatedContainer(
-                                                                              curve: Curves
-                                                                                  .bounceOut,
-                                                                              duration: Duration(
-                                                                                  seconds: 1),
-                                                                              decoration: BoxDecoration(
-                                                                                color: selected ==
-                                                                                    "khata"
-                                                                                    ? Colors
-                                                                                    .purple[200]
-                                                                                    : Colors
-                                                                                    .white,
-                                                                                borderRadius: BorderRadius
-                                                                                    .circular(
-                                                                                    selected ==
-                                                                                        "khata"
-                                                                                        ? 5.0
-                                                                                        : 0.0),
-                                                                              ),
-                                                                              child: GestureDetector(
-                                                                                  onTap: () {
-                                                                                    setState(() {
-                                                                                      selected =
-                                                                                      "khata";
-                                                                                    });
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    child: Center(
-                                                                                        child: Column(
-                                                                                          mainAxisSize: MainAxisSize
-                                                                                              .min,
-                                                                                          children: <
-                                                                                              Widget>[
-                                                                                            Icon(
-                                                                                              Icons
-                                                                                                  .attach_money,
-                                                                                              size: 70,
-                                                                                              color: selected !=
-                                                                                                  "khata"
-                                                                                                  ? Colors
-                                                                                                  .purple[200]
-                                                                                                  : Colors
-                                                                                                  .white,),
-                                                                                            SizedBox(
-                                                                                              height: 5,),
-                                                                                            Text(
-                                                                                              "khata",
-                                                                                              style: TextStyle(
-                                                                                                  color: selected ==
-                                                                                                      "khata"
-                                                                                                      ? Colors
-                                                                                                      .white
-                                                                                                      : Colors
-                                                                                                      .purple[200]
-                                                                                              ),)
-                                                                                          ],
-                                                                                        )),
-
-                                                                                    decoration: BoxDecoration(
-                                                                                        border: Border
-                                                                                            .all(
-                                                                                            color: Colors
-                                                                                                .purple[100])
-                                                                                    ),
-                                                                                  ))))
-                                                                    ],
-                                                                  )
-                                                              )),
-                                                          Expanded(
+                                                                ))
+                                                            ,
+                                                            Expanded(
                                                               flex: 1,
-                                                              child: FractionallySizedBox(
-                                                                  widthFactor: 5 /
-                                                                      6,
-                                                                  child: Padding(
-                                                                      padding: EdgeInsets
-                                                                          .all(
-                                                                          10.0),
-                                                                      child: RaisedButton(
-                                                                          color: Colors
-                                                                              .green[200],
-                                                                          onPressed: selected ==
-                                                                              ""
-                                                                              ? null
-                                                                              : () async {
-                                                                            if (selected ==
-                                                                                "khata") {
-                                                                              Widget child = search();
-                                                                              var type = true;
-                                                                              var hint = "search customers";
-                                                                              var Focus = FocusNode();
-                                                                              List<
-                                                                                  dynamic> li = new List();
-                                                                              FirebaseDatabase fire = FirebaseDatabase
-                                                                                  .instance;
-                                                                              DatabaseReference data = fire
-                                                                                  .reference()
-                                                                                  .child(
-                                                                                  "ordersforacadsales");
-                                                                              data
-                                                                                  .limitToLast(
-                                                                                  5)
-                                                                                  .onChildAdded
-                                                                                  .listen((
-                                                                                  onData) {
-                                                                                setState(() {
-                                                                                  li
-                                                                                      .add(
-                                                                                      onData
-                                                                                          .snapshot
-                                                                                          .value);
-                                                                                  print(
-                                                                                      onData
-                                                                                          .snapshot
-                                                                                          .value);
+
+                                                              child: Container(
+                                                                  color: Colors
+                                                                      .purple[200],
+                                                                  child:
+                                                                  Center(
+                                                                      child: Text(
+                                                                        "Select a payment method",
+                                                                        style: TextStyle(
+                                                                            fontWeight: FontWeight
+                                                                                .bold,
+                                                                            color: Colors
+                                                                                .white,
+                                                                        ),))),
+                                                            ),
+                                                        Expanded(
+                                                                flex: 3,
+                                                                child: Container(
+                                                                    child: Row(
+                                                                      children: <
+                                                                          Widget>[
+                                                                        Expanded(
+                                                                            child:
+                                                                            AnimatedContainer(
+                                                                                curve: Curves
+                                                                                    .bounceOut,
+                                                                                duration: Duration(
+                                                                                    seconds: 1),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: selected ==
+                                                                                      "cash"
+                                                                                      ? Colors
+                                                                                      .purple[200]
+                                                                                      : Colors
+                                                                                      .white,
+                                                                                  borderRadius: BorderRadius
+                                                                                      .circular(
+                                                                                      selected ==
+                                                                                          "cash"
+                                                                                          ? 5.0
+                                                                                          : 0.0),
+                                                                                ),
+                                                                                child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                     setState(() {
+                                                                                        print("YOLO");
+                                                                                        selected =
+                                                                                        "cash";
+                                                                                      });
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      child: Center(
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize
+                                                                                                .min,
+                                                                                            children: <
+                                                                                                Widget>[
+                                                                                             Expanded(
+                                                                                               flex:3,
+                                                                                          child:Icon(
+                                                                                                Icons
+                                                                                                    .attach_money,                                                                                             color: selected !=
+                                                                                                    "cash"
+                                                                                                    ? Colors
+                                                                                                    .purple[200]
+                                                                                                    : Colors
+                                                                                                    .white,)),
+                                                                                             Expanded(
+                                                                                               flex:1,
+                                                                                               child:Text(
+                                                                                                "Cash",
+                                                                                                style: TextStyle(
+                                                                                                    color: selected ==
+                                                                                                        "cash"
+                                                                                                        ? Colors
+                                                                                                        .white
+                                                                                                        : Colors
+                                                                                                        .purple[200]
+                                                                                                ),))
+                                                                                            ],
+                                                                                          )),
+
+                                                                                      decoration: BoxDecoration(
+                                                                                          border: Border
+                                                                                              .all(
+                                                                                              color: Colors
+                                                                                                  .purple[100])
+                                                                                      ),
+                                                                                    )))),
+                                                                        Expanded(
+                                                                            child:
+                                                                            AnimatedContainer(
+                                                                                curve: Curves
+                                                                                    .bounceOut,
+                                                                                duration: Duration(
+                                                                                    seconds: 1),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: selected ==
+                                                                                      "UPI"
+                                                                                      ? Colors
+                                                                                      .purple[200]
+                                                                                      : Colors
+                                                                                      .white,
+                                                                                  borderRadius: BorderRadius
+                                                                                      .circular(
+                                                                                      selected ==
+                                                                                          "UPI"
+                                                                                          ? 5.0
+                                                                                          : 0.0),
+                                                                                ),
+                                                                                child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                      setState(() {
+                                                                                        selected =
+                                                                                        "UPI";
+                                                                                      });
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      child: Center(
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize
+                                                                                                .min,
+                                                                                            children: <
+                                                                                                Widget>[
+
+                                                                                             Expanded(
+                                                                                               flex : 3,
+                                                                                          child:Icon(
+                                                                                                Icons
+                                                                                                    .attach_money,
+                                                                                                color: selected !=
+                                                                                                    "UPI"
+                                                                                                    ? Colors
+                                                                                                    .purple[200]
+                                                                                                    : Colors
+                                                                                                    .white,)),
+
+                                                                                             Expanded(
+                                                                                               flex:1,
+                                                                                               child:Text(
+                                                                                                "UPI",
+                                                                                                style: TextStyle(
+                                                                                                    color: selected ==
+                                                                                                        "UPI"
+                                                                                                        ? Colors
+                                                                                                        .white
+                                                                                                        : Colors
+                                                                                                        .purple[200]
+                                                                                                ),))
+                                                                                            ],
+                                                                                          )),
+
+                                                                                      decoration: BoxDecoration(
+                                                                                          border: Border
+                                                                                              .all(
+                                                                                              color: Colors
+                                                                                                  .purple[100])
+                                                                                      ),
+                                                                                    )))),
+                                                                        Expanded(
+                                                                            child:
+                                                                            AnimatedContainer(
+                                                                                curve: Curves
+                                                                                    .bounceOut,
+                                                                                duration: Duration(
+                                                                                    seconds: 1),
+                                                                                decoration: BoxDecoration(
+                                                                                  color: selected ==
+                                                                                      "khata"
+                                                                                      ? Colors
+                                                                                      .purple[200]
+                                                                                      : Colors
+                                                                                      .white,
+                                                                                  borderRadius: BorderRadius
+                                                                                      .circular(
+                                                                                      selected ==
+                                                                                          "khata"
+                                                                                          ? 5.0
+                                                                                          : 0.0),
+                                                                                ),
+                                                                                child: GestureDetector(
+                                                                                    onTap: () {
+                                                                                      setState(() {
+                                                                                        selected =
+                                                                                        "khata";
+                                                                                      });
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      child: Center(
+                                                                                          child: Column(
+                                                                                            mainAxisSize: MainAxisSize
+                                                                                                .min,
+                                                                                            children: <
+                                                                                                Widget>[
+                                                                                              Expanded(
+                                                                                          flex:3,
+                                                                                              child:Icon(
+                                                                                                Icons
+                                                                                                    .attach_money,
+                                                                                                color: selected !=
+                                                                                                    "khata"
+                                                                                                    ? Colors
+                                                                                                    .purple[200]
+                                                                                                    : Colors
+                                                                                                    .white,)),
+
+                                                                                              Expanded(
+                                                                                                flex:1,
+                                                                                                child:Text(
+                                                                                                "khata",
+                                                                                                style: TextStyle(
+                                                                                                    color: selected ==
+                                                                                                        "khata"
+                                                                                                        ? Colors
+                                                                                                        .white
+                                                                                                        : Colors
+                                                                                                        .purple[200]
+                                                                                                ),))
+                                                                                            ],
+                                                                                          )),
+
+                                                                                      decoration: BoxDecoration(
+                                                                                          border: Border
+                                                                                              .all(
+                                                                                              color: Colors
+                                                                                                  .purple[100])
+                                                                                      ),
+                                                                                    ))))
+                                                                      ],
+                                                                    )
+                                                                )),
+                                                            Expanded(
+                                                                flex: 2,
+                                                                child: FractionallySizedBox(
+                                                                    widthFactor:1,
+                                                                    child: Padding(
+                                                                        padding: EdgeInsets
+                                                                            .all(
+                                                                            10.0),
+                                                                        child: RaisedButton(
+                                                                            color: Colors
+                                                                                .green[200],
+                                                                            onPressed: selected ==
+                                                                                ""
+                                                                                ? null
+                                                                                : () async {
+                                                                              if (selected ==
+                                                                                  "khata") {
+                                                                                Widget child = search();
+                                                                                var type = true;
+                                                                                var hint = "search customers";
+                                                                                var Focus = FocusNode();
+                                                                                List<
+                                                                                    dynamic> li = new List();
+                                                                                FirebaseDatabase fire = FirebaseDatabase
+                                                                                    .instance;
+                                                                                DatabaseReference data = fire
+                                                                                    .reference()
+                                                                                    .child(
+                                                                                    "ordersforacadsales");
+                                                                                data
+                                                                                    .limitToLast(
+                                                                                    5)
+                                                                                    .onChildAdded
+                                                                                    .listen((
+                                                                                    onData) {
+                                                                                  setState(() {
+                                                                                    li
+                                                                                        .add(
+                                                                                        onData
+                                                                                            .snapshot
+                                                                                            .value);
+                                                                                    print(
+                                                                                        onData
+                                                                                            .snapshot
+                                                                                            .value);
+                                                                                  });
                                                                                 });
-                                                                              });
-                                                                              showDialog(
-                                                                                  context: context,
-                                                                                  builder: (
-                                                                                      _) =>
-                                                                                      AnimatedSwitcher(
-                                                                                          duration: Duration(
-                                                                                              seconds: 3),
-                                                                                          child: overview(
-                                                                                              false,
-                                                                                              weightData
-                                                                                                  .elementAt(
-                                                                                                  0)
-                                                                                                  .number,
-                                                                                              cart)
-                                                                                      )
-                                                                              );
+                                                                                showDialog(
+                                                                                    context: context,
+                                                                                    builder: (
+                                                                                        _) =>
+                                                                                        AnimatedSwitcher(
+                                                                                            duration: Duration(
+                                                                                                seconds: 3),
+                                                                                            child: overview(
+                                                                                                false,
+                                                                                                weightData
+                                                                                                    .elementAt(
+                                                                                                    0)
+                                                                                                    .number,
+                                                                                                cart)
+                                                                                        )
+                                                                                );
+                                                                              }
+                                                                              else {
+                                                                                showDialog(
+                                                                                    context: context,
+                                                                                    builder: (
+                                                                                        _) =>
+                                                                                        AnimatedSwitcher(
+                                                                                            duration: Duration(
+                                                                                                seconds: 3),
+                                                                                            child: overview(
+                                                                                                null,
+                                                                                                weightData
+                                                                                                    .elementAt(
+                                                                                                    0)
+                                                                                                    .number,
+                                                                                                cart)
+                                                                                        )
+                                                                                );
+                                                                              }
                                                                             }
-                                                                            else {
-                                                                              showDialog(
-                                                                                  context: context,
-                                                                                  builder: (
-                                                                                      _) =>
-                                                                                      AnimatedSwitcher(
-                                                                                          duration: Duration(
-                                                                                              seconds: 3),
-                                                                                          child: overview(
-                                                                                              null,
-                                                                                              weightData
-                                                                                                  .elementAt(
-                                                                                                  0)
-                                                                                                  .number,
-                                                                                              cart)
-                                                                                      )
-                                                                              );
-                                                                            }
-                                                                          }
-                                                                          ,
-                                                                          child: Text(
-                                                                            "Charge  : " +
-                                                                                weightData
-                                                                                    .elementAt(
-                                                                                    0)
-                                                                                    .number
-                                                                                    .toString(),
-                                                                            style: TextStyle(
-                                                                                color: Colors
-                                                                                    .white,
-                                                                                fontSize: 20,
-                                                                                fontWeight: FontWeight
-                                                                                    .bold
-                                                                            ),)
-                                                                      ))))
+                                                                            ,
+                                                                            child: Text(
+                                                                              "Charge  : " +
+                                                                                  weightData
+                                                                                      .elementAt(
+                                                                                      0)
+                                                                                      .number
+                                                                                      .toString(),
+                                                                              style: TextStyle(
+                                                                                  color: Colors
+                                                                                      .white,
+                                                                                  fontWeight: FontWeight
+                                                                                      .bold
+                                                                              ),)
+                                                                        ))))
 
-                                                        ]),
+                                                          ]),
 
 
-                                                  )));
+                                                    )));},
+                                      ));
                                     },
                                     child:
                                     Visibility(
@@ -2730,8 +2737,6 @@ class _PosState extends State<Pos> {
                                                                         ,
                                                                       )
                                                                   ),
-
-
                                                                   Expanded(
                                                                       child: GestureDetector(
                                                                           onTap: () {
@@ -2811,522 +2816,506 @@ class _PosState extends State<Pos> {
                 ])),
             Flexible(
               flex: 1,
-              child:   Center(
-                  child: Card(
-                    color: const Color(
-                        0xFF0E3311).withOpacity(
-                        0.5)
-                    ,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius
-                            .circular(20.0)
-                    ),
-                    child:
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment
-                            .center,
-                        children: <Widget>[
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.of(
-                                    context)
-                                    .pop();
-                              },
-                              child:
-                              Visibility(
-                                  visible: navigator,
-                                  child:
-                                  Padding(
-                                      padding: EdgeInsets
-                                          .only(
-                                          bottom: 20),
+              child:   StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return  Container(
+                      child: Center(
+                          child: Card(
+                            color: const Color(
+                                0xFF0E3311).withOpacity(
+                                0)
+                            ,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius
+                                    .circular(20.0)
+                            ),
+                            child:
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment
+                                    .center,
+                                children: <Widget>[
+                                  Expanded(
+                                      flex : 3,
+                                      child:GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(
+                                                context)
+                                                .pop();
+                                          },
+                                          child:
+                                          Visibility(
+                                              visible: navigator,
+                                                  child:
+                                                  Container(
+                                                    child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment
+                                                            .spaceAround,
+                                                        children: <
+                                                            Widget>[
+                                                          Text(
+                                                            "Items : " +
+                                                                (cart
+                                                                    .length -
+                                                                    1)
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                                fontWeight: FontWeight
+                                                                    .bold,
+                                                                color: Colors
+                                                                    .white
+                                                            ),),
+                                                          Text(
+                                                              "Total: " +
+                                                                  cart["total"]
+                                                                      .toString(),
+                                                              style: TextStyle(
+                                                                  fontWeight: FontWeight
+                                                                      .bold,
+                                                                  color: Colors
+                                                                      .white
+                                                              ))
+                                                        ]
+                                                    ),
 
+                                                    decoration: BoxDecoration(
+                                                      color: Colors
+                                                          .purple[200],
+                                                      borderRadius: BorderRadius
+                                                          .circular(
+                                                          10),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          offset: const Offset(
+                                                              10,
+                                                              3),
+                                                          blurRadius: 6,
+                                                          color: const Color(
+                                                              0xff000000)
+                                                              .withOpacity(
+                                                              0.16),)
+                                                      ],
+                                                    ),
+
+                                                  ))))
+
+                                  ,
+                                  Expanded(
+                                      flex: 6,
                                       child: Container(
-                                        child: Row(
-                                            mainAxisAlignment: MainAxisAlignment
-                                                .spaceEvenly,
+                                        child: Scrollbar(
+                                            child: ListView
+                                                .builder(
+                                                itemCount: weightData
+                                                    .length,
+                                                itemBuilder: (
+                                                    BuildContext context,
+                                                    int index,) {
+                                                  return Container(
+                                                    color: Colors
+                                                        .purple[100],
+                                                    height: 50,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .start,
+                                                      children: <
+                                                          Widget>[
+                                                        Expanded(
+                                                            child: Center(
+                                                                child: Text(
+                                                                  weightData
+                                                                      .elementAt(
+                                                                      index)
+                                                                      .number
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight: FontWeight
+                                                                          .bold
+                                                                  ),))
+                                                        ),
+                                                        Expanded(
+                                                            child: Center(
+                                                                child: Text(
+                                                                  "X",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .purple,
+                                                                      fontWeight: FontWeight
+                                                                          .bold
+                                                                  ),))
+                                                        ),
+                                                        Expanded(
+                                                            child:
+                                                            Center(
+                                                                child: Text(
+                                                                  weightData
+                                                                      .elementAt(
+                                                                      index)
+                                                                      .itemname,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white
+                                                                  ),))),
+                                                        Expanded(
+                                                            child:
+                                                            Center(
+                                                                child: Text(
+                                                                  ((item[weightData
+                                                                      .elementAt(
+                                                                      index)
+                                                                      .itemname]) *
+                                                                      weightData
+                                                                          .elementAt(
+                                                                          index)
+                                                                          .number)
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white
+                                                                  ),)))
+                                                      ],
+                                                    ),
+                                                  );
+                                                })),
+
+
+                                      ))
+                                  ,
+                                  Expanded(
+                                    flex: 1,
+
+                                    child: Container(
+                                        color: Colors
+                                            .purple[200],
+                                        child:
+                                        Center(
+                                            child: Text(
+                                              "Select payment ",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight
+                                                      .bold,
+                                                  color: Colors
+                                                      .white,
+                                              ),))),
+                                  ),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                          child: Row(
                                             children: <
                                                 Widget>[
-                                              Text(
-                                                "Items : " +
-                                                    (cart
-                                                        .length -
-                                                        1)
-                                                        .toString(),
-                                                style: TextStyle(
-                                                    fontSize: 25.0,
-                                                    fontWeight: FontWeight
-                                                        .bold,
-                                                    color: Colors
-                                                        .white
-                                                ),),
-                                              Text(
-                                                  "Total: " +
-                                                      cart["total"]
-                                                          .toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 25.0,
-                                                      fontWeight: FontWeight
-                                                          .bold,
-                                                      color: Colors
-                                                          .white
-                                                  )),
-                                              Icon(
-                                                (Icons
-                                                    .navigate_next),
-                                                color: Colors
-                                                    .purple,
-                                                size: 40,
-                                              )
-                                            ]
-                                        ),
-                                        width: 343,
-                                        height: 58,
-                                        decoration: BoxDecoration(
-                                          color: Colors
-                                              .purple[200],
-                                          borderRadius: BorderRadius
-                                              .circular(
-                                              10),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              offset: const Offset(
-                                                  10,
-                                                  3),
-                                              blurRadius: 6,
-                                              color: const Color(
-                                                  0xff000000)
-                                                  .withOpacity(
-                                                  0.16),)
-                                          ],
-                                        ),
+                                              Expanded(
+                                                  child:
+                                                  AnimatedContainer(
+                                                      curve: Curves
+                                                          .bounceOut,
+                                                      duration: Duration(
+                                                          seconds: 1),
+                                                      decoration: BoxDecoration(
+                                                        color: selected ==
+                                                            "cash"
+                                                            ? Colors
+                                                            .purple[200]
+                                                            : Colors
+                                                            .white,
+                                                        borderRadius: BorderRadius
+                                                            .circular(
+                                                            selected ==
+                                                                "cash"
+                                                                ? 5.0
+                                                                : 0.0),
+                                                      ),
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              print("YOLO");
+                                                              selected =
+                                                              "cash";
+                                                            });
+                                                          },
+                                                          child: Container(
+                                                            child: Center(
+                                                                child: Column(
+                                                                  mainAxisSize: MainAxisSize
+                                                                      .min,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Expanded(
+                                                                        flex:3,
+                                                                        child:Icon(
+                                                                          Icons
+                                                                              .attach_money,                                                                                             color: selected !=
+                                                                            "cash"
+                                                                            ? Colors
+                                                                            .purple[200]
+                                                                            : Colors
+                                                                            .white,)),
+                                                                    Expanded(
+                                                                        flex:2,
+                                                                        child:Text(
+                                                                          "Cash",
+                                                                          style: TextStyle(
+                                                                              color: selected ==
+                                                                                  "cash"
+                                                                                  ? Colors
+                                                                                  .white
+                                                                                  : Colors
+                                                                                  .purple[200]
+                                                                          ),))
+                                                                  ],
+                                                                )),
 
-                                      ))))
+                                                            decoration: BoxDecoration(
+                                                                border: Border
+                                                                    .all(
+                                                                    color: Colors
+                                                                        .purple[100])
+                                                            ),
+                                                          )))),
+                                              Expanded(
+                                                  child:
+                                                  AnimatedContainer(
+                                                      curve: Curves
+                                                          .bounceOut,
+                                                      duration: Duration(
+                                                          seconds: 1),
+                                                      decoration: BoxDecoration(
+                                                        color: selected ==
+                                                            "UPI"
+                                                            ? Colors
+                                                            .purple[200]
+                                                            : Colors
+                                                            .white,
+                                                        borderRadius: BorderRadius
+                                                            .circular(
+                                                            selected ==
+                                                                "UPI"
+                                                                ? 5.0
+                                                                : 0.0),
+                                                      ),
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              selected =
+                                                              "UPI";
+                                                            });
+                                                          },
+                                                          child: Container(
+                                                            child: Center(
+                                                                child: Column(
+                                                                  mainAxisSize: MainAxisSize
+                                                                      .min,
+                                                                  children: <
+                                                                      Widget>[
 
-                          ,
-                          Expanded(
-                              flex: 6,
-                              child: Container(
-                                child: Scrollbar(
-                                    child: ListView
-                                        .builder(
-                                        shrinkWrap: true,
-                                        itemCount: weightData
-                                            .length,
-                                        itemBuilder: (
-                                            BuildContext context,
-                                            int index,) {
-                                          return Container(
-                                            color: Colors
-                                                .purple[100],
-                                            height: 60,
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment
-                                                  .start,
-                                              children: <
-                                                  Widget>[
-                                                Expanded(
-                                                    child: Center(
-                                                        child: Text(
-                                                          weightData
-                                                              .elementAt(
-                                                              index)
-                                                              .number
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white,
-                                                              fontSize: 20,
-                                                              fontWeight: FontWeight
-                                                                  .bold
-                                                          ),))
-                                                ),
-                                                Expanded(
-                                                    child: Center(
-                                                        child: Text(
-                                                          "X",
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .purple,
-                                                              fontWeight: FontWeight
-                                                                  .bold
-                                                          ),))
-                                                ),
-                                                Expanded(
-                                                    child:
-                                                    Center(
-                                                        child: Text(
-                                                          weightData
-                                                              .elementAt(
-                                                              index)
-                                                              .itemname,
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              color: Colors
-                                                                  .white
-                                                          ),))),
-                                                Expanded(
-                                                    child:
-                                                    Center(
-                                                        child: Text(
-                                                          ((item[weightData
-                                                              .elementAt(
-                                                              index)
-                                                              .itemname]) *
-                                                              weightData
-                                                                  .elementAt(
-                                                                  index)
-                                                                  .number)
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              fontSize: 20,
-                                                              color: Colors
-                                                                  .white
-                                                          ),)))
+                                                                    Expanded(
+                                                                        flex : 3,
+                                                                        child:Icon(
+                                                                          Icons
+                                                                              .attach_money,
+                                                                          color: selected !=
+                                                                              "UPI"
+                                                                              ? Colors
+                                                                              .purple[200]
+                                                                              : Colors
+                                                                              .white,)),
 
+                                                                    Expanded(
+                                                                        flex:2,
+                                                                        child:Text(
+                                                                          "UPI",
+                                                                          style: TextStyle(
+                                                                              color: selected ==
+                                                                                  "UPI"
+                                                                                  ? Colors
+                                                                                  .white
+                                                                                  : Colors
+                                                                                  .purple[200]
+                                                                          ),))
+                                                                  ],
+                                                                )),
 
-                                              ],
-                                            ),
-                                          );
-                                        })),
+                                                            decoration: BoxDecoration(
+                                                                border: Border
+                                                                    .all(
+                                                                    color: Colors
+                                                                        .purple[100])
+                                                            ),
+                                                          )))),
+                                              Expanded(
+                                                  child:
+                                                  AnimatedContainer(
+                                                      curve: Curves
+                                                          .bounceOut,
+                                                      duration: Duration(
+                                                          seconds: 1),
+                                                      decoration: BoxDecoration(
+                                                        color: selected ==
+                                                            "khata"
+                                                            ? Colors
+                                                            .purple[200]
+                                                            : Colors
+                                                            .white,
+                                                        borderRadius: BorderRadius
+                                                            .circular(
+                                                            selected ==
+                                                                "khata"
+                                                                ? 5.0
+                                                                : 0.0),
+                                                      ),
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              selected =
+                                                              "khata";
+                                                            });
+                                                          },
+                                                          child: Container(
+                                                            child: Center(
+                                                                child: Column(
+                                                                  mainAxisSize: MainAxisSize
+                                                                      .min,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Expanded(
+                                                                        flex:3,
+                                                                        child:Icon(
+                                                                          Icons
+                                                                              .attach_money,
+                                                                          color: selected !=
+                                                                              "khata"
+                                                                              ? Colors
+                                                                              .purple[200]
+                                                                              : Colors
+                                                                              .white,)),
 
+                                                                    Expanded(
+                                                                        flex:2,
+                                                                        child:Text(
+                                                                          "khata",
+                                                                          style: TextStyle(
+                                                                              color: selected ==
+                                                                                  "khata"
+                                                                                  ? Colors
+                                                                                  .white
+                                                                                  : Colors
+                                                                                  .purple[200]
+                                                                          ),))
+                                                                  ],
+                                                                )),
 
-                              ))
-                          ,
-                          Expanded(
-                            flex: 1,
+                                                            decoration: BoxDecoration(
+                                                                border: Border
+                                                                    .all(
+                                                                    color: Colors
+                                                                        .purple[100])
+                                                            ),
+                                                          ))))
+                                            ],
+                                          )
+                                      )),
+                                  Expanded(
+                                      flex: 2,
+                                      child: FractionallySizedBox(
+                                          widthFactor:1,
 
-                            child: Container(
-                                color: Colors
-                                    .purple[200],
-                                child:
-                                Center(
-                                    child: Text(
-                                      "Select a payment method",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight
-                                              .bold,
-                                          color: Colors
-                                              .white,
-                                          fontSize: 30
-                                      ),))),
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: Container(
-                                  child: Row(
-                                    children: <
-                                        Widget>[
-                                      Expanded(
-                                          child:
-                                          AnimatedContainer(
-                                              curve: Curves
-                                                  .bounceOut,
-                                              duration: Duration(
-                                                  seconds: 1),
-                                              decoration: BoxDecoration(
-                                                color: selected ==
-                                                    "cash"
-                                                    ? Colors
-                                                    .purple[200]
-                                                    : Colors
-                                                    .white,
-                                                borderRadius: BorderRadius
-                                                    .circular(
-                                                    selected ==
-                                                        "cash"
-                                                        ? 5.0
-                                                        : 0.0),
-                                              ),
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selected =
-                                                      "cash";
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    child: Center(
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize
-                                                              .min,
-                                                          children: <
-                                                              Widget>[
-                                                            Icon(
-                                                              Icons
-                                                                  .attach_money,
-                                                              size: 70,
-                                                              color: selected !=
-                                                                  "cash"
-                                                                  ? Colors
-                                                                  .purple[200]
-                                                                  : Colors
-                                                                  .white,),
-                                                            SizedBox(
-                                                              height: 5,),
-                                                            Text(
-                                                              "Cash",
-                                                              style: TextStyle(
-                                                                  color: selected ==
-                                                                      "cash"
-                                                                      ? Colors
-                                                                      .white
-                                                                      : Colors
-                                                                      .purple[200]
-                                                              ),)
-                                                          ],
-                                                        )),
+                                              child: RaisedButton(
+                                                  color: Colors
+                                                      .green[200],
+                                                  onPressed: selected ==
+                                                      ""
+                                                      ? null
+                                                      : () async {
+                                                    if (selected ==
+                                                        "khata") {
+                                                      Widget child = search();
+                                                      var type = true;
+                                                      var hint = "search customers";
+                                                      var Focus = FocusNode();
+                                                      List<dynamic> li = new List();
+                                                      FirebaseDatabase fire = FirebaseDatabase
+                                                          .instance;
+                                                      DatabaseReference data = fire
+                                                          .reference()
+                                                          .child(
+                                                          "ordersforacadsales");
+                                                      data
+                                                          .limitToLast(
+                                                          5)
+                                                          .onChildAdded
+                                                          .listen((
+                                                          onData) {
+                                                        setState(() {
+                                                          li
+                                                              .add(
+                                                              onData
+                                                                  .snapshot
+                                                                  .value);
+                                                          print(
+                                                              onData
+                                                                  .snapshot
+                                                                  .value);
+                                                        });
+                                                      });
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (
+                                                              _) =>
+                                                              AnimatedSwitcher(
+                                                                  duration: Duration(
+                                                                      seconds: 3),
+                                                                  child: overview(
+                                                                      false,
+                                                                      weightData
+                                                                          .elementAt(
+                                                                          0)
+                                                                          .number,
+                                                                      cart)
+                                                              )
+                                                      );
+                                                    }
+                                                    else {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (
+                                                              _) =>
+                                                              AnimatedSwitcher(
+                                                                  duration: Duration(
+                                                                      seconds: 3),
+                                                                  child: overview(
+                                                                      null,
+                                                                      weightData
+                                                                          .elementAt(
+                                                                          0)
+                                                                          .number,
+                                                                      cart)
+                                                              )
+                                                      );
+                                                    }
+                                                  }
+                                                  ,
+                                                  child: Text(
+                                                    "Charge  : " +
+                                                        ( weightData.length !=0?
+                                                        weightData
+                                                            .elementAt(
+                                                            0)
+                                                            .number
+                                                            .toString():"0"),
+                                                    style: TextStyle(
+                                                        color: Colors
+                                                            .white,
+                                                        fontWeight: FontWeight
+                                                            .bold
+                                                    ),)
+                                              )))
 
-                                                    decoration: BoxDecoration(
-                                                        border: Border
-                                                            .all(
-                                                            color: Colors
-                                                                .purple[100])
-                                                    ),
-                                                  )))),
-                                      Expanded(
-                                          child:
-                                          AnimatedContainer(
-                                              curve: Curves
-                                                  .bounceOut,
-                                              duration: Duration(
-                                                  seconds: 1),
-                                              decoration: BoxDecoration(
-                                                color: selected ==
-                                                    "UPI"
-                                                    ? Colors
-                                                    .purple[200]
-                                                    : Colors
-                                                    .white,
-                                                borderRadius: BorderRadius
-                                                    .circular(
-                                                    selected ==
-                                                        "UPI"
-                                                        ? 5.0
-                                                        : 0.0),
-                                              ),
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selected =
-                                                      "UPI";
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    child: Center(
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize
-                                                              .min,
-                                                          children: <
-                                                              Widget>[
-                                                            Icon(
-                                                              Icons
-                                                                  .attach_money,
-                                                              size: 70,
-                                                              color: selected !=
-                                                                  "UPI"
-                                                                  ? Colors
-                                                                  .purple[200]
-                                                                  : Colors
-                                                                  .white,),
-                                                            SizedBox(
-                                                              height: 5,),
-                                                            Text(
-                                                              "UPI",
-                                                              style: TextStyle(
-                                                                  color: selected ==
-                                                                      "UPI"
-                                                                      ? Colors
-                                                                      .white
-                                                                      : Colors
-                                                                      .purple[200]
-                                                              ),)
-                                                          ],
-                                                        )),
-
-                                                    decoration: BoxDecoration(
-                                                        border: Border
-                                                            .all(
-                                                            color: Colors
-                                                                .purple[100])
-                                                    ),
-                                                  )))),
-                                      Expanded(
-                                          child:
-                                          AnimatedContainer(
-                                              curve: Curves
-                                                  .bounceOut,
-                                              duration: Duration(
-                                                  seconds: 1),
-                                              decoration: BoxDecoration(
-                                                color: selected ==
-                                                    "khata"
-                                                    ? Colors
-                                                    .purple[200]
-                                                    : Colors
-                                                    .white,
-                                                borderRadius: BorderRadius
-                                                    .circular(
-                                                    selected ==
-                                                        "khata"
-                                                        ? 5.0
-                                                        : 0.0),
-                                              ),
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selected =
-                                                      "khata";
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    child: Center(
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize
-                                                              .min,
-                                                          children: <
-                                                              Widget>[
-                                                            Icon(
-                                                              Icons
-                                                                  .attach_money,
-                                                              size: 70,
-                                                              color: selected !=
-                                                                  "khata"
-                                                                  ? Colors
-                                                                  .purple[200]
-                                                                  : Colors
-                                                                  .white,),
-                                                            SizedBox(
-                                                              height: 5,),
-                                                            Text(
-                                                              "khata",
-                                                              style: TextStyle(
-                                                                  color: selected ==
-                                                                      "khata"
-                                                                      ? Colors
-                                                                      .white
-                                                                      : Colors
-                                                                      .purple[200]
-                                                              ),)
-                                                          ],
-                                                        )),
-
-                                                    decoration: BoxDecoration(
-                                                        border: Border
-                                                            .all(
-                                                            color: Colors
-                                                                .purple[100])
-                                                    ),
-                                                  ))))
-                                    ],
-                                  )
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: FractionallySizedBox(
-                                  widthFactor: 5 /
-                                      6,
-                                  child: Padding(
-                                      padding: EdgeInsets
-                                          .all(
-                                          10.0),
-                                      child: RaisedButton(
-                                          color: Colors
-                                              .green[200],
-                                          onPressed: selected ==
-                                              ""
-                                              ? null
-                                              : () async {
-                                            if (selected ==
-                                                "khata") {
-                                              Widget child = search();
-                                              var type = true;
-                                              var hint = "search customers";
-                                              var Focus = FocusNode();
-                                              List<
-                                                  dynamic> li = new List();
-                                              FirebaseDatabase fire = FirebaseDatabase
-                                                  .instance;
-                                              DatabaseReference data = fire
-                                                  .reference()
-                                                  .child(
-                                                  "ordersforacadsales");
-                                              data
-                                                  .limitToLast(
-                                                  5)
-                                                  .onChildAdded
-                                                  .listen((
-                                                  onData) {
-                                                setState(() {
-                                                  li
-                                                      .add(
-                                                      onData
-                                                          .snapshot
-                                                          .value);
-                                                  print(
-                                                      onData
-                                                          .snapshot
-                                                          .value);
-                                                });
-                                              });
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (
-                                                      _) =>
-                                                      AnimatedSwitcher(
-                                                          duration: Duration(
-                                                              seconds: 3),
-                                                          child: overview(
-                                                              false,
-                                                              weightData
-                                                                  .elementAt(
-                                                                  0)
-                                                                  .number,
-                                                              cart)
-                                                      )
-                                              );
-                                            }
-                                            else {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (
-                                                      _) =>
-                                                      AnimatedSwitcher(
-                                                          duration: Duration(
-                                                              seconds: 3),
-                                                          child: overview(
-                                                              null,
-                                                              weightData
-                                                                  .elementAt(
-                                                                  0)
-                                                                  .number,
-                                                              cart)
-                                                      )
-                                              );
-                                            }
-                                          }
-                                          ,
-                                          child: Text(
-                                            "Charge  : " +
-                                                (weightData.length!=0 ?
-                                                weightData
-                                                    .elementAt(
-                                                    0)
-                                                    .number
-                                                    .toString() : "0"),
-                                            style: TextStyle(
-                                                color: Colors
-                                                    .white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight
-                                                    .bold
-                                            ),)
-                                      ))))
-
-                        ]),
+                                ]),
 
 
-                  )),
+                          )));},
+              ),
             )
 
 
