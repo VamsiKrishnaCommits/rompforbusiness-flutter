@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:flut/weaklyrep.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,7 +64,20 @@ static  List<Widget> Wids=<Widget>[
                             border: Border.all(color: Colors.grey,width: 1.0)
                           ),
                           child:Text("Daily Sales",style: TextStyle(fontSize: 25),),
-                        )))
+                        ))),
+                          Builder(
+                              builder : (context)=>  GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Weaklyrep()));
+                                  },
+                                  child:Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey,width: 1.0)
+                                    ),
+                                    child:Text("weakly rep",style: TextStyle(fontSize: 25),),
+                                  )))
                     ]
                       ),
                       color: Colors.white,
