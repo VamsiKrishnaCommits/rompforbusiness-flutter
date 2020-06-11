@@ -516,6 +516,7 @@ class _operateState extends State<operate> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => manager()),
+
                               (Route<dynamic> route) => false,
                         );                      } ,
                     )
