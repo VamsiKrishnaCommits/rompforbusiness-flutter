@@ -124,7 +124,8 @@ class _WeaklyrepState extends State<Weaklyrep> {
                           });
                         }
                       }
-                    ),
+
+                      ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.3,
                       child: Container(
