@@ -225,6 +225,8 @@ class _WeaklyrepState extends State<Weaklyrep> {
                                     p=i;
                                   }
                                 }
+
+
                                 BestSeller.insert(m,BestSellerItem(BestSeller[p].itemName, BestSeller[p].itemsoldcount,colors[m]));
                                 BestSeller.removeAt(p+1);
                                 m++;
