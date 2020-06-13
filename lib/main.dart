@@ -120,6 +120,7 @@ class _meeState extends State<mee> {
                                 child: Text("Sign Up!"),
                               )
                               ,
+
                               Padding(
                                   padding: EdgeInsets.only(top:30),
                                   child:FractionallySizedBox(
@@ -271,9 +272,17 @@ class _registerState extends State<register> {
                   AuthCredential credential=PhoneAuthProvider.getCredential(verificationId: Phone.verid, smsCode: "123456");
                   Phone.ph.signInWithCredential(credential).
                   then((authResult){
-                    SnackBar s=new SnackBar(content: Text("verified"),duration: Duration(seconds: 2),);
-                    Scaffold.of(con).showSnackBar(s);
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registername()));
+Future<FirebaseUser> user=FirebaseAuth.instance.currentUser();
+user.then((value) {
+  FirebaseDatabase fire=FirebaseDatabase.instance;
+  DatabaseReference da=fire.reference();
+  da.child("authentication").child(Phone.number).set(value.uid).then((value1)  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>registername(value.uid)));
+
+  });
+
+});
+
                   });
                 },)
             ) ],),
@@ -304,6 +313,8 @@ class Myapp extends StatelessWidget {
 }
 //register
 class registername extends StatefulWidget {
+String uid;
+  registername(this.uid);
   @override
   _registernameState createState() => _registernameState();
 }
@@ -323,7 +334,7 @@ class _registernameState extends State<registername> {
                     TextField(
                       controller: textEditingController,
                       decoration: InputDecoration(
-                          hintText: "Your Name"
+                          hintText: "Business Name"
                       ),
                     ),
                     RaisedButton(
@@ -331,19 +342,11 @@ class _registernameState extends State<registername> {
                       onPressed:(){
                         FirebaseDatabase f=FirebaseDatabase.instance;
                         DatabaseReference da=f.reference();
-                        da.child("OwnerNames").child(textEditingController.text).set("exist").then((_){
+                        da.child("IdBusinessMap").child(widget.uid).set(textEditingController.text).then((_){
                         }).catchError((onError){
                         });
-                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
-                        {
+                        da.child(widget.uid).child("StoreName").set(textEditingController.text).then((_){
 
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> registerbusiness()));
-
-                        }
-
-                        ).catchError((onError){
-                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
-                          Scaffold.of(context).showSnackBar(s);
                         });
                       } ,
                     )
