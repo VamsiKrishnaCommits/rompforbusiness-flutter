@@ -4,9 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'ManagerCheckout.dart';
 
-void main(){
-  runApp(new mee());
-}
+void main(){runApp(manager());}
 //loginpage
 class mee extends StatefulWidget {
   @override

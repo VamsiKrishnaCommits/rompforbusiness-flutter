@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:flut/monthlyrep.dart';
 import 'package:flut/weaklyrep.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -77,6 +78,19 @@ static  List<Widget> Wids=<Widget>[
                                         border: Border.all(color: Colors.grey,width: 1.0)
                                     ),
                                     child:Text("weakly rep",style: TextStyle(fontSize: 25),),
+                                  ))),
+                          Builder(
+                              builder : (context)=>  GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>MonthlyRep()));
+                                  },
+                                  child:Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey,width: 1.0)
+                                    ),
+                                    child:Text("Monthly rep",style: TextStyle(fontSize: 25),),
                                   )))
                     ]
                       ),
