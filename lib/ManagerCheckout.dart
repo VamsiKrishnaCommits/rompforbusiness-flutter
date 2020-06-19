@@ -41,6 +41,7 @@ static  List<Widget> Wids=<Widget>[
             child:Column(
               children: [
                 Flexible(
+
                   flex:1,
                   child:Container(
                     color: Colors.purple,
