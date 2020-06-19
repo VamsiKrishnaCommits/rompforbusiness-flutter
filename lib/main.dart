@@ -3,9 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'ManagerCheckout.dart';
+import 'owner.dart';
 
 void main(){
-  runApp(new mee());
+  runApp(new owner());
 }
 //loginpage
 class mee extends StatefulWidget {
@@ -346,7 +347,7 @@ class _registernameState extends State<registername> {
                         }).catchError((onError){
                         });
                         da.child(widget.uid).child("StoreName").set(textEditingController.text).then((_){
-
+Navigator.push(context, MaterialPageRoute(builder: (context)=>registerbusiness(widget.uid)));
                         });
                       } ,
                     )
@@ -365,6 +366,8 @@ class Phone{
 }
 
 class registerbusiness extends StatefulWidget {
+  String uid;
+  registerbusiness(this.uid);
   @override
   _registerbusinessState createState() => _registerbusinessState();
 }
@@ -384,7 +387,7 @@ class _registerbusinessState extends State<registerbusiness> {
                     TextField(
                       controller: textEditingController,
                       decoration: InputDecoration(
-                          hintText: "Name Of your business"
+                          hintText: "Your Name"
                       ),
                     ),
                     RaisedButton(
@@ -392,20 +395,17 @@ class _registerbusinessState extends State<registerbusiness> {
                       onPressed:(){
                         FirebaseDatabase f=FirebaseDatabase.instance;
                         DatabaseReference da=f.reference();
-                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
+                        da.child(widget.uid).child("Team").child(Phone.number).child("role").set("owner").then((_){
+                          da.child(widget.uid).child("Team").child(Phone.number).child("name").set(textEditingController.text).then((_)
+                          {
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> multiplebranches(widget.uid)));
+
+                          });
                         }).catchError((onError){
                         });
-                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
-                        {
 
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> multiplebranches()));
 
-                        }
-
-                        ).catchError((onError){
-                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
-                          Scaffold.of(context).showSnackBar(s);
-                        });
                       } ,
                     )
                   ],
@@ -417,13 +417,13 @@ class _registerbusinessState extends State<registerbusiness> {
   }
 }
 class multiplebranches extends StatefulWidget {
+  String uid;
+  multiplebranches(this.uid);
   @override
   _multiplebranchesState createState() => _multiplebranchesState();
 }
-
 class _multiplebranchesState extends State<multiplebranches> {
   TextEditingController textEditingController=TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -442,16 +442,11 @@ class _multiplebranchesState extends State<multiplebranches> {
                       onPressed:(){
                         FirebaseDatabase f=FirebaseDatabase.instance;
                         DatabaseReference da=f.reference();
-                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
+                        da.child(widget.uid).child("multiplebranches").set("yes").then((_){
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> operate(widget.uid)));
+
                         }).catchError((onError){
-                        });
-                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
-                        {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> operate()));
-                        }
-                        ).catchError((onError){
-                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
-                          Scaffold.of(context).showSnackBar(s);
                         });
                       } ,
                     ),
@@ -460,20 +455,13 @@ class _multiplebranchesState extends State<multiplebranches> {
                       onPressed:(){
                         FirebaseDatabase f=FirebaseDatabase.instance;
                         DatabaseReference da=f.reference();
-                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
-                        }).catchError((onError){
-                        });
-                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
-                        {
+                        da.child(widget.uid).child("multiplebranches").set("no").then((_){
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => manager()),
                                 (Route<dynamic> route) => false,
-                          );                        }
-
-                        ).catchError((onError){
-                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
-                          Scaffold.of(context).showSnackBar(s);
+                          );
+                        }).catchError((onError){
                         });
                       } ,
                     )
@@ -486,10 +474,11 @@ class _multiplebranchesState extends State<multiplebranches> {
   }
 }
 class operate extends StatefulWidget {
+  String uid;
+  operate(this.uid);
   @override
   _operateState createState() => _operateState();
 }
-
 class _operateState extends State<operate> {
   @override
   Widget build(BuildContext context) {
@@ -509,19 +498,71 @@ class _operateState extends State<operate> {
                       onPressed:(){
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => manager()),
+                          MaterialPageRoute(builder: (context) => branchname(widget.uid)),
                               (Route<dynamic> route) => false,
                         );                      }  ,
                     ),
                     RaisedButton(
                       child: Text("Nah"),
                       onPressed:(){
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => manager()),
+FirebaseDatabase f=FirebaseDatabase.instance;
+DatabaseReference da=f.reference();
+                        da.child(widget.uid).child("Team").child(Phone.number).child("branch").set("-").then((value) {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => manager()),
 
-                              (Route<dynamic> route) => false,
-                        );                      } ,
+                                (Route<dynamic> route) => false,
+                          );
+                        });
+                                           } ,
+                    )
+                  ],
+                )
+            ),
+          ),
+        )
+    );
+  }
+}
+class branchname extends StatefulWidget {
+  String uid;
+  branchname(this.uid);
+
+  @override
+  _branchnameState createState() => _branchnameState();
+}
+
+class _branchnameState extends State<branchname> {
+  TextEditingController textEditingController=TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: MaterialApp(
+          title: "Register",
+          home: Scaffold(
+            appBar: AppBar(title:Text("Register")),
+            body: Container(
+                child: Column(
+                  children: <Widget>[
+                    TextField(
+                      controller: textEditingController,
+                      decoration: InputDecoration(
+                          hintText: "Branch name you operate"
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Next"),
+                      onPressed:(){
+                        FirebaseDatabase f=FirebaseDatabase.instance;
+                        DatabaseReference da=f.reference();
+                        da.child(widget.uid).child("Team").child(Phone.number).child("branch").set(textEditingController.text).then((_){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>manager()));
+                        }).catchError((onError){
+                        });
+                        da.child(widget.uid).child("StoreName").set(textEditingController.text).then((_){
+                        });
+                      } ,
                     )
                   ],
                 )
