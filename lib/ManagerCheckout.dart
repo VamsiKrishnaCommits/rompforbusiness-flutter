@@ -9,19 +9,14 @@ import 'TodaysOrders.dart';
 import 'RecieveOrder.dart';
 import 'TodaysReport.dart';
 import 'item.dart';
-
-void main(){
-  runApp(new manager());
-}
+import 'tokenandstore.dart';
 class manager extends StatefulWidget {
   @override
   _managerState createState() => _managerState();
 }
 class _managerState extends State<manager> {
 int selected=0;
-static  List<Widget> Wids=<Widget>[
-  new Pos(0),RecieveOrder(),Text("Hey")
-];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -212,7 +207,9 @@ class _PosState extends State<Pos> {
     l = new List();
     select = "All Items";
     resultList = new List();
-    databaseReference = firebaseDatabase.reference().child("StoreName");
+    print(token.tokenname.toString());
+    print(token.storename.toString());
+    databaseReference = firebaseDatabase.reference().child(token.tokenname).child(token.storename);
     databaseReference
         .child("catagory")
         .onChildAdded
@@ -1263,7 +1260,6 @@ class _PosState extends State<Pos> {
                                           builder: (context) =>
                                              StatefulBuilder(
                                              builder: (BuildContext context, StateSetter setState /*You can rename this!*/) {
-
     return  Container(
                                         child: Center(
                                                     child: Card(
@@ -3406,9 +3402,9 @@ class _overviewState extends State<overview> {
     super.initState();
     total=widget.total;
     addcust=widget.addcust;
-    da=f.reference().child("StoreName").child("credits");
+    da=f.reference().child(token.tokenname).child(token.storename).child("credits");
     fire=FirebaseDatabase.instance;
-    data=fire.reference().child("StoreName").child("credits");
+    data=fire.reference().child(token.tokenname).child(token.storename).child("credits");
     data.onChildAdded.listen((onData){
       setState(() {
         setState(() {
@@ -3497,12 +3493,13 @@ class _overviewState extends State<overview> {
                                     DateTime date = new DateTime(now.year, now.month, now.day);
                                     String dates=date.year.toString() + date.month.toString() + date.day.toString();
                                     FirebaseDatabase order=  FirebaseDatabase.instance;
-                                    DatabaseReference daa = order.reference().child("StoreName").child("orders");
+                                    DatabaseReference daa = order.reference().child(token.tokenname).child(token.storename).child("orders");
                                     ordering["items"]=widget.cart;
                                     ordering["method"]="manual";
                                     ordering["status"]="New Order";
                                     ordering["time"]=now.toString();
-                                    ordering["date"]=dates;
+                                    ordering["date"]=int.parse(
+                                    DateTime.now().toString().substring(0,11).replaceAll("-", ""));
                                     ordering["year"]=date.year.toString();
                                     ordering["month"]=month;
                                     ordering["weekday"]=date.weekday;

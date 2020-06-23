@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'showcomplete.dart';
-
+import 'tokenandstore.dart';
 class TodaysReport extends StatefulWidget {
   @override
   _TodaysReportState createState() => _TodaysReportState();
@@ -27,7 +27,7 @@ class _TodaysReportState extends State<TodaysReport> {
     getrevenue();
     gettotalsales();
 
-    databaseReference.child("StoreName").child("DailySales").child("DailyItemsSpent").limitToLast(5).onChildChanged.listen((event) {
+    databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyItemsSpent").limitToLast(5).onChildChanged.listen((event) {
       mostsold=List();
       Map<dynamic,dynamic> aa=event.snapshot.value;
       aa.forEach((key, value) {
@@ -44,18 +44,18 @@ class _TodaysReportState extends State<TodaysReport> {
         print(mostsold.toString());
       });
     });
-    databaseReference.child("StoreName").child("DailySales").child("DailyTotal").child("20200520").onChildChanged.listen((event) {
+    databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyTotal").child("20200520").onChildChanged.listen((event) {
       setState(() {
         totalrevenue=event.snapshot.toString();
       });
     });
-    databaseReference.child("StoreName").child("DailySales").child("DailyTotalSales").child("20200520").onChildChanged.listen((event) {
+    databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyTotalSales").child("20200520").onChildChanged.listen((event) {
       setState(() {
         totalsales=event.snapshot.toString();
       });
     });
 
-    databaseReference.child("StoreName").child("items").limitToLast(5).onChildChanged.listen((event) {
+    databaseReference.child(token.tokenname).child(token.storename).child("items").limitToLast(5).onChildChanged.listen((event) {
       itemcount=List();
       Map<dynamic,dynamic> aa=event.snapshot.value;
       aa.forEach((key, value) {
@@ -150,7 +150,7 @@ SizedBox(height: 30,),
   getdeets(){
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
     DatabaseReference databaseReference=firebaseDatabase.reference();
-var fut=    databaseReference.child("StoreName").child("DailySales").child("DailyItemsSpent").child("20200510").limitToLast(5).once();
+var fut=    databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyItemsSpent").child("20200510").limitToLast(5).once();
 fut.then((value) {
   setState(() {
   mostsold=List();
@@ -175,7 +175,7 @@ fut.then((value) {
   getdeets2(){
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
     DatabaseReference databaseReference=firebaseDatabase.reference();
-    var fut=    databaseReference.child("StoreName").child("items").once();
+    var fut=    databaseReference.child(token.tokenname).child(token.storename).child("items").once();
     fut.then((value) {
       setState(() {
         itemcount=List();
@@ -201,7 +201,7 @@ fut.then((value) {
   void getrevenue() {
      FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
      DatabaseReference databaseReference=firebaseDatabase.reference();
-  var fut=databaseReference.child("StoreName").child("DailySales").child("DailyTotal").child("20200510").once();
+  var fut=databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyTotal").child("20200510").once();
   fut.then((value) {
     setState(() {
       totalrevenue=value.value.toString();
@@ -212,7 +212,7 @@ fut.then((value) {
   void gettotalsales() {
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
     DatabaseReference databaseReference=firebaseDatabase.reference();
-    var fut=databaseReference.child("StoreName").child("DailySales").child("DailyTotalSales").child("20200510").once();
+    var fut=databaseReference.child(token.tokenname).child(token.storename).child("DailySales").child("DailyTotalSales").child("20200510").once();
     fut.then((value) {
       setState(() {
         totalsales=value.value.toString();

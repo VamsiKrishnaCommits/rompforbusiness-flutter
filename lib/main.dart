@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'ManagerCheckout.dart';
 import 'owner.dart';
-
+import 'tokenandstore.dart';
 void main(){
   runApp(new owner());
 }
@@ -66,8 +66,6 @@ class _meeState extends State<mee> {
                                                 style: BorderStyle.solid
                                             )
                                         ),
-
-
                                       ),
                                       onChanged: (text){
                                         setState(() {
@@ -346,7 +344,7 @@ class _registernameState extends State<registername> {
                         da.child("IdBusinessMap").child(widget.uid).set(textEditingController.text).then((_){
                         }).catchError((onError){
                         });
-                        da.child(widget.uid).child("StoreName").set(textEditingController.text).then((_){
+                        da.child(widget.uid).child(token.tokenname).child(token.storename).set(textEditingController.text).then((_){
 Navigator.push(context, MaterialPageRoute(builder: (context)=>registerbusiness(widget.uid)));
                         });
                       } ,
@@ -560,7 +558,7 @@ class _branchnameState extends State<branchname> {
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>manager()));
                         }).catchError((onError){
                         });
-                        da.child(widget.uid).child("StoreName").set(textEditingController.text).then((_){
+                        da.child(widget.uid).child(token.tokenname).child(token.storename).set(textEditingController.text).then((_){
                         });
                       } ,
                     )

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'tokenandstore.dart';
 
 class RecieveOrder extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _RecieveOrderState extends State<RecieveOrder> {
     firebaseDatabase = FirebaseDatabase.instance;
     databaseReference = firebaseDatabase.reference();
     databaseReference
-        .child("StoreName").child("orders")
+        .child(token.tokenname).child(token.storename).child("orders")
         .onChildAdded
         .listen((onData) {
         print("state changed");
@@ -73,7 +73,7 @@ Padding(padding: EdgeInsets.only(top:30),
       firebaseDatabase = FirebaseDatabase.instance;
       databaseReference = firebaseDatabase.reference();
       databaseReference
-          .child("StoreName").child("orders")
+          .child(token.tokenname).child(token.storename).child("orders")
           .onChildAdded
           .listen((onData) {
         setState(() {
@@ -108,7 +108,7 @@ padding:EdgeInsets.all(10.0),
                         firebaseDatabase = FirebaseDatabase.instance;
                         databaseReference = firebaseDatabase.reference();
                         databaseReference
-                            .child("StoreName").child("orders")
+                            .child(token.tokenname).child(token.storename).child("orders")
                             .onChildAdded
                             .listen((onData) {
                           setState(() {
@@ -142,7 +142,7 @@ onTap:(){
     firebaseDatabase = FirebaseDatabase.instance;
     databaseReference = firebaseDatabase.reference();
     databaseReference
-        .child("StoreName").child("orders")
+        .child(token.tokenname).child(token.storename).child("orders")
         .onChildAdded
         .listen((onData) {
     setState(() {
@@ -176,7 +176,7 @@ onTap:(){
                         firebaseDatabase = FirebaseDatabase.instance;
                         databaseReference = firebaseDatabase.reference();
                         databaseReference
-                            .child("StoreName").child("orders")
+                            .child(token.tokenname).child(token.storename).child("orders")
                             .onChildAdded
                             .listen((onData) {
                           setState(() {
@@ -210,7 +210,7 @@ onTap:(){
                        firebaseDatabase = FirebaseDatabase.instance;
                        databaseReference = firebaseDatabase.reference();
                        databaseReference
-                           .child("StoreName").child("orders")
+                           .child(token.tokenname).child(token.storename).child("orders")
                            .onChildAdded
                            .listen((onData) {
                          setState(() {
@@ -302,7 +302,7 @@ FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
     // TODO: implement initState
     super.initState();
     order o=widget.o;
-    databaseReference=firebaseDatabase.reference().child("StoreName").child("orders").child(o.id).child("status");
+    databaseReference=firebaseDatabase.reference().child(token.tokenname).child(token.storename).child("orders").child(o.id).child("status");
   }
   @override
   Widget build(BuildContext context) {

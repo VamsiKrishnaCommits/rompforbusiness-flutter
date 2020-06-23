@@ -1,12 +1,11 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'dailyrep.dart';
-
+import 'tokenandstore.dart';
 class TodaysOrders extends StatefulWidget {
   @override
   _TodaysOrdersState createState() => _TodaysOrdersState();
 }
-
 class _TodaysOrdersState extends State<TodaysOrders> {
   List<details> deta;
   @override
@@ -16,7 +15,7 @@ class _TodaysOrdersState extends State<TodaysOrders> {
     deta=List();
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.instance;
     DatabaseReference databaseReference=firebaseDatabase.reference();
-    databaseReference.child("StoreName").child("DailySales").limitToLast(10).onChildAdded.listen((event) {
+    databaseReference.child(token.tokenname).child(token.storename).child("DailySales").limitToLast(10).onChildAdded.listen((event) {
       setState(() {
         deta.add(new details(event.snapshot.value,event.snapshot.value["Day"].toString(),event.snapshot.value["DailyTotal"].toString(),event.snapshot.value["Dat"].toString(),event.snapshot.value["Month"].toString()));
       });

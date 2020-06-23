@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'RecieveOrder.dart';
 import 'ManagerCheckout.dart';
 import 'item.dart';
+import 'tokenandstore.dart';
 
 class sale extends StatefulWidget {
   final Map<dynamic,dynamic> cart;
@@ -37,6 +38,8 @@ class _saleState extends State<sale> {
   }
   @override
   Widget build(BuildContext context) {
+    print("heyeeee");
+    print(new DateTime.now());
     return MaterialApp(
       title: "Sale",
       home: Scaffold(
@@ -350,9 +353,9 @@ class _overviewState extends State<overview> {
     super.initState();
     total=widget.total;
     addcust=widget.addcust;
-    da=f.reference().child("StoreName").child("credits");
+    da=f.reference().child(token.tokenname).child(token.storename).child("credits");
     fire=FirebaseDatabase.instance;
-    data=fire.reference().child("StoreName").child("credits");
+    data=fire.reference().child(token.tokenname).child(token.storename).child("credits");
     data.onChildAdded.listen((onData){
       setState(() {
         setState(() {
@@ -429,7 +432,6 @@ child:AnimatedSwitcher(
                 builder : (context)=>FlatButton(
                   child:Text("Yes"),
                   onPressed: (){
-
 if(alert!=null){
 da.child(ids.elementAt(alert)).child("due").once().then((onValue){
     da.child(ids.elementAt(alert)).child("due").set( onValue.value==null ? total : onValue.value+total).then((onValue){
@@ -441,9 +443,10 @@ da.child(ids.elementAt(alert)).child("due").once().then((onValue){
         DateTime date = new DateTime(now.year, now.month, now.day);
         String dates=date.year.toString() + date.month.toString() + date.day.toString();
         FirebaseDatabase order=  FirebaseDatabase.instance;
-        DatabaseReference daa = order.reference().child("StoreName").child("orders");
+        DatabaseReference daa = order.reference().child(token.tokenname).child(token.storename).child("orders");
         ordering["items"]=widget.cart;
         ordering["method"]="manual";
+        print(new DateTime.now().toString());
         ordering["status"]="New Order";
         ordering["time"]=now.toString();
         ordering["date"]=dates;

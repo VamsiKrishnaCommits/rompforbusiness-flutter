@@ -1,10 +1,10 @@
 import 'dart:ui';
-
+import 'ManagerCheckout.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'tokenandstore.dart';
 
 class owner extends StatefulWidget {
   @override
@@ -35,24 +35,7 @@ class _contentState extends State<content> {
         appBar: AppBar(
           leading: Icon(Icons.line_weight,color: Colors.blue,),
           title:
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-          children:[
-            Text(
-              "Romp!",style: GoogleFonts.viga(
-                color: Colors.blue
-            ),
-            ),
-            Spacer(),
-            Icon(Icons.person,color: Colors.green,)
-,
-            Text(
-          "Owner",style: GoogleFonts.viga(
-          color: Colors.green
-          ),
-          ),
-          ]
-          ) ,
+          row() ,
 
           backgroundColor: Colors.white10.withOpacity(0.0),
           elevation: 0,
@@ -66,13 +49,17 @@ class _contentState extends State<content> {
           ),
           bottomNavigationBar: BottomAppBar(
             shape: CircularNotchedRectangle(),
-            child: Row(
+            child:
+            FractionallySizedBox(
+              heightFactor: 1/15,
+            child:Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Icon(Icons.monetization_on,size: 40,color: Colors.white,)
+                Icon(Icons.monetization_on,color: Colors.white,)
               ],
             ),
+          )   ,
             color: Colors.blue,
           ),
         body:Container(
@@ -195,7 +182,109 @@ return CircularProgressIndicator(
   getbranches() async {
    FirebaseDatabase f= FirebaseDatabase.instance;
    DatabaseReference da=f.reference();
+   token.tokenname="Y9Ie2BhyagRySzbqq3PjwTvMoIz2";
    var a=await  da.child("Y9Ie2BhyagRySzbqq3PjwTvMoIz2").child("branches").once();
    return a;
+  }
+}
+class row extends StatefulWidget {
+  @override
+  _rowState createState() => _rowState();
+}
+
+class _rowState extends State<row> {
+  getbranches() async {
+    FirebaseDatabase f= FirebaseDatabase.instance;
+    DatabaseReference da=f.reference();
+    var a=await  da.child("Y9Ie2BhyagRySzbqq3PjwTvMoIz2").child("branches").once();
+    return a;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children:[
+          Text(
+            "Romp!",style: TextStyle(
+              color: Colors.blue,fontWeight: FontWeight.bold
+          ),
+          ),
+          Spacer(),
+          GestureDetector(
+              onTap: (){
+                showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context, builder: (context){
+                  return
+                    Builder(
+                        builder : (context)=>
+
+                          FractionallySizedBox(
+                            heightFactor: 1,
+                              child:Card(
+                                color: Colors.blue,
+                                child:
+                                Column(
+                                  children:[Flexible(
+                                      flex:1,
+                                child:Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child:Container(
+                                      child: Center(
+                                        child:Text("Switch Branch",style: TextStyle(
+                                          color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold
+                                      ),)),
+                                    ))),
+                                    Flexible(
+                                      flex:9,
+                                        child:FutureBuilder(
+                            future: getbranches(),
+                            builder: (BuildContext context,AsyncSnapshot<dynamic> snap){
+                              if(snap.data!=null){
+                                DataSnapshot a=snap.data;
+                                List<String> branches=List();
+                                Map s=a.value;
+                                s.forEach((key, value) {
+                                  branches.add(key);
+                                });
+                                return
+                                  ListView(semanticChildCount:branches.length ,children: List.generate(branches.length , (index){
+                                  return
+
+                                    Padding(
+                                        padding:EdgeInsets.all(2),
+                                    child:Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(5),
+                                                      border: Border.all(color: Colors.white)
+                                                    ),
+                                          child:ListTile(
+                                                      onTap: (){
+                                                        token.storename=branches.elementAt(index);
+                                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>manager()));
+                                                      },
+                                                      title: Text(index<3 ? branches.elementAt(index): index.toString(),style: TextStyle(
+                                                            color: Colors.white,fontWeight: FontWeight.bold,
+                                                            fontSize: 15,
+                                                          )))));
+                                }),);
+                              }
+                              return CircularProgressIndicator(
+                                backgroundColor: Colors.orange,
+                              );
+                            }
+                        ))]))));
+                });
+              },
+              child:Row(
+                  children:[
+                    Icon(Icons.person,color: Colors.green,)
+                    ,Text(
+                      "Owner",style: GoogleFonts.viga(
+                        color: Colors.green
+                    ),
+                    ),]))
+        ]
+    );
   }
 }
